@@ -13,45 +13,45 @@ class AddBookPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Adicionar livro"),
+        title: const Text("Adicionar livro"),
       ),
       body: Column(
         children: [
-          SizedBox(height: 15),
+          const SizedBox(height: 15),
 
           TextField(
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               label: Text("Nome"),
             ),
             controller: nameController,
           ),
-          SizedBox(height: 15),
+          const SizedBox(height: 15),
 
           TextField(
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               label: Text("Sinopse"),
             ),
             controller: sinopseController,
-          ),          SizedBox(height: 15),
+          ),          const SizedBox(height: 15),
 
           TextField(
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               label: Text("Imagem"),
             ),
             controller: imageController,
           ),
-          SizedBox(height: 15),
+          const SizedBox(height: 15),
           TextField(
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               label: Text("Link"),
             ),
             controller: linkController,
           ),
-          SizedBox(height: 15),
+          const SizedBox(height: 15),
           Consumer<Books>(
             builder: (context, books, child) {
               return ElevatedButton(
-                child: Text("Adicionar"),
+                child: const Text("Adicionar"),
                 onPressed: () {
                   Navigator.of(context).pop();
                   final book = Book(

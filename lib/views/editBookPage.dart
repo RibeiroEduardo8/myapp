@@ -7,10 +7,10 @@ class EditBookPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Editar livro"),
+        title: const Text("Editar livro"),
       ),
       body: Container(
-        padding: EdgeInsets.all(15),
+        padding: const EdgeInsets.all(15),
         alignment: Alignment.center,
       ),
     );

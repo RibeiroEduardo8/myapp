@@ -1,18 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/respositories/books.dart';
+import 'package:myapp/service/autenticarUsuario.dart';
 import 'package:myapp/views/accessBookPage.dart';
 import 'package:myapp/views/addBookPage.dart';
 import 'package:myapp/views/editBookPage.dart';
 import 'package:provider/provider.dart';
 
 class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key});
-
+  MyHomePage({super.key});
+  AutenticarUsuario autenticarUsuario = AutenticarUsuario();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Gerenciamento de Livros"),
+        title: const Text("Gerenciamento de Livros"),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.logout),
+            onPressed: () async {
+              bool logout = await _dialogBuilder(context,'Deseja realmente sair?','Voce esta prestes a sair do aplicativo!\n') ?? false;
+              if (logout) {
+                await autenticarUsuario.deslogarUsuario();
+              }
+            },
+          )
+        ],
       ),
       body: Consumer<Books>(
         builder: (context, books, child) {
@@ -26,18 +38,18 @@ class MyHomePage extends StatelessWidget {
                 leading: Image.network(book.image),
                 trailing: Row(mainAxisSize: MainAxisSize.min, children: [
                   IconButton(
-                    icon: Icon(Icons.edit, color: Colors.yellow),
+                    icon: const Icon(Icons.edit, color: Colors.yellow),
                     onPressed: () {
                       Navigator.of(context)
                           .push(MaterialPageRoute(builder: (_) {
-                        return EditBookPage();
+                        return const EditBookPage();
                       }));
                     },
                   ),
                   IconButton(
-                    icon: Icon(Icons.delete, color: Colors.red),
+                    icon: const Icon(Icons.delete, color: Colors.red),
                     onPressed: () async {
-                      bool removed = await _dialogBuilder(context) ?? false;
+                      bool removed = await _dialogBuilder(context,'Deseja realmente excluir?','Essa ação não pode ser defeita!\n') ?? false;
                       if (removed) {
                         books.remove(index);
                       }
@@ -56,7 +68,7 @@ class MyHomePage extends StatelessWidget {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
         onPressed: () {
           Navigator.of(context).push(MaterialPageRoute(builder: (_) {
             return AddBookPage();
@@ -67,15 +79,13 @@ class MyHomePage extends StatelessWidget {
   }
 }
 
-Future<bool?> _dialogBuilder(BuildContext context) {
+Future<bool?> _dialogBuilder(BuildContext context, String titulo, String conteudo) {
   return showDialog<bool>(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-            title: const Text('Deseja realmente excluir?'),
-            content: const Text(
-              'Essa ação não pode ser defeita!\n',
-            ),
+            title:  Text(titulo),
+            content: Text(conteudo),
             actions: <Widget>[
               TextButton(
                 style: TextButton.styleFrom(

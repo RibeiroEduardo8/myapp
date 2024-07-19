@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:myapp/respositories/books.dart';
 import 'package:myapp/themes/themes.dart';
@@ -20,8 +21,27 @@ void main() async {
         theme: Themes.light,
         title: "Books",
         debugShowCheckedModeBanner: false,
-        home: LoginPage(),
+        home: const VerificaLogado(),
       ),
     ),
   );
 }
+
+class VerificaLogado extends StatelessWidget {
+  const VerificaLogado({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return  StreamBuilder<User?>( 
+      stream: FirebaseAuth.instance.userChanges(),
+      builder: (context, snapshot) {
+        if(snapshot.hasData) {
+          return MyHomePage();
+        }else{
+          return const LoginPage();
+        }
+      },);
+  }
+} 
+  
+

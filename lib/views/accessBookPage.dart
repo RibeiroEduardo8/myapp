@@ -3,32 +3,32 @@ import 'package:myapp/models/book.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class AccessBookPage extends StatelessWidget {
-  const AccessBookPage(this._book, {Key? key}) : super(key: key);
+  const AccessBookPage(this._book, {super.key});
   final Book _book;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Sobre o livro"),
+        title: const Text("Sobre o livro"),
       ),
       body: Container(
-        padding: EdgeInsets.all(15),
+        padding: const EdgeInsets.all(15),
         alignment: Alignment.center,
         child: SingleChildScrollView(
           child: Column(
             children: [
               Text(
                 _book.name,
-                style: TextStyle(
+                style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 25.0), // textAlign: TextAlign.center,
               ),
-              SizedBox(height: 30),
+              const SizedBox(height: 30),
               Image.network(
                   _book.image,),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               ElevatedButton(
-                child: Text("Comprar na amazon"),
+                child: const Text("Comprar na amazon"),
                 onPressed: () async {
                   final url = Uri.parse(_book.link);
                   if (await canLaunchUrl(url)) {
