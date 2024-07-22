@@ -25,28 +25,13 @@ class AccessBookPage extends StatelessWidget {
               ),
               const SizedBox(height: 30),
               Image.network(
-                  _book.image,),
+                  _book.capa,),
               const SizedBox(height: 20),
-              ElevatedButton(
-                child: const Text("Comprar na amazon"),
-                onPressed: () async {
-                  final url = Uri.parse(_book.link);
-                  if (await canLaunchUrl(url)) {
-                    await launchUrl(url);
-                  } else {
-                    throw 'Could not launch $url';
-                  }
-                },
-
-              // InkWell(
-              //     child: Text(
-              //       'Abrir no navegador',
-              //       style: TextStyle(fontSize: 18.0),
-              //     ),
-              //     onTap: () => launchUrl(Uri(
-              //         host:
-              //             'https://www.amazon.com.br/Homem-Aranha-Eternamente-jovem-Stefan-Petrucha-ebook/dp/B09JVFRX7D'))),
-          )],
+              Text(
+                _book.sinopse,
+                style: const TextStyle(fontSize: 18.0),
+              ),
+              ],
           ),
         ),
       ),

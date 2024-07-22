@@ -8,7 +8,6 @@ class AddBookPage extends StatelessWidget {
   final nameController = TextEditingController();
   final sinopseController = TextEditingController();
   final imageController = TextEditingController();
-  final linkController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,12 +40,6 @@ class AddBookPage extends StatelessWidget {
             controller: imageController,
           ),
           const SizedBox(height: 15),
-          TextField(
-            decoration: const InputDecoration(
-              label: Text("Link"),
-            ),
-            controller: linkController,
-          ),
           const SizedBox(height: 15),
           Consumer<Books>(
             builder: (context, books, child) {
@@ -58,7 +51,6 @@ class AddBookPage extends StatelessWidget {
                     nameController.text,
                     sinopseController.text,
                     imageController.text,
-                    linkController.text,
                   );
                   books.add(book);
                 },

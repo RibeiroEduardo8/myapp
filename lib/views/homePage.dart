@@ -8,19 +8,19 @@ import 'package:provider/provider.dart';
 
 class MyHomePage extends StatelessWidget {
   MyHomePage({super.key});
-  AutenticarUsuario autenticarUsuario = AutenticarUsuario();
+  final AutenticarUsuario _autenticarUsuario = AutenticarUsuario();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Gerenciamento de Livros"),
+        title: const Text("Biblioteca Virtual"),
         actions: [
           IconButton(
             icon: const Icon(Icons.logout),
             onPressed: () async {
               bool logout = await _dialogBuilder(context,'Deseja realmente sair?','Voce esta prestes a sair do aplicativo!\n') ?? false;
               if (logout) {
-                await autenticarUsuario.deslogarUsuario();
+                await _autenticarUsuario.deslogarUsuario();
               }
             },
           )
@@ -34,8 +34,7 @@ class MyHomePage extends StatelessWidget {
               final book = books.all[index];
               return ListTile(
                 title: Text(book.name),
-                subtitle: Text(book.sinopse),
-                leading: Image.network(book.image),
+                leading: Image.network(book.capa),
                 trailing: Row(mainAxisSize: MainAxisSize.min, children: [
                   IconButton(
                     icon: const Icon(Icons.edit, color: Colors.yellow),

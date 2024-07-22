@@ -18,7 +18,7 @@ class AutenticarUsuario {
 
   Future<String?> logarUsuario(String email, String password) async {
     try {
-      UserCredential userCredential = await _auth.signInWithEmailAndPassword(
+      await _auth.signInWithEmailAndPassword(
           email: email, password: password);
       return null;
     } on FirebaseAuthException catch (e) {
