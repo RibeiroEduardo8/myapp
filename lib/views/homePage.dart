@@ -35,27 +35,27 @@ class MyHomePage extends StatelessWidget {
               return ListTile(
                 title: Text(book.name),
                 leading: Image.network(book.capa),
-                trailing: Row(mainAxisSize: MainAxisSize.min, children: [
-                  IconButton(
-                    icon: const Icon(Icons.edit, color: Colors.yellow),
-                    onPressed: () {
-                      Navigator.of(context)
-                          .push(MaterialPageRoute(builder: (_) {
-                        return const EditBookPage();
-                      }));
-                    },
-                  ),
-                  IconButton(
-                    icon: const Icon(Icons.delete, color: Colors.red),
-                    onPressed: () async {
-                      bool removed = await _dialogBuilder(context,'Deseja realmente excluir?','Essa ação não pode ser defeita!\n') ?? false;
-                      if (removed) {
-                        books.remove(index);
-                      }
-                      // books.remove(index);
-                    },
-                  ),
-                ]),
+                // trailing: Row(mainAxisSize: MainAxisSize.min, children: [
+                //   IconButton(
+                //     icon: const Icon(Icons.edit, color: Colors.yellow),
+                //     onPressed: () {
+                //       Navigator.of(context)
+                //           .push(MaterialPageRoute(builder: (_) {
+                //         return const EditBookPage();
+                //       }));
+                //     },
+                //   ),
+                //   IconButton(
+                //     icon: const Icon(Icons.delete, color: Colors.red),
+                //     onPressed: () async {
+                //       bool removed = await _dialogBuilder(context,'Deseja realmente excluir?','Essa ação não pode ser defeita!\n') ?? false;
+                //       if (removed) {
+                //         books.remove(index);
+                //       }
+                //       // books.remove(index);
+                //     },
+                //   ),
+                // ]),
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(builder: (_) {
                     return AccessBookPage(book);
@@ -66,14 +66,14 @@ class MyHomePage extends StatelessWidget {
           );
         },
       ),
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.add),
-        onPressed: () {
-          Navigator.of(context).push(MaterialPageRoute(builder: (_) {
-            return AddBookPage();
-          }));
-        },
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   child: const Icon(Icons.add),
+      //   onPressed: () {
+      //     Navigator.of(context).push(MaterialPageRoute(builder: (_) {
+      //       return AddBookPage();
+      //     }));
+      //   },
+      // ),
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/models/book.dart';
+import 'package:myapp/views/visualizarPDFPage.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class AccessBookPage extends StatelessWidget {
@@ -25,16 +26,29 @@ class AccessBookPage extends StatelessWidget {
               ),
               const SizedBox(height: 30),
               Image.network(
-                  _book.capa,),
+                _book.capa,
+              ),
               const SizedBox(height: 20),
+              Text("Autor: ${_book.autor}"),
               Text(
-                _book.sinopse,
+                "Sinopse: ${_book.sinopse}",
                 style: const TextStyle(fontSize: 18.0),
               ),
-              ],
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context){ return
+                          VisualizarPDFPage(_book.caminhoPDF);},
+                    ),
+                  );
+                },
+                child: Text('Abrir Livro'),
+              ),
+            ],
           ),
         ),
       ),
     );
   }
 }
+

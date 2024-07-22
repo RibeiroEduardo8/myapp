@@ -47,12 +47,12 @@ class AddBookPage extends StatelessWidget {
                 child: const Text("Adicionar"),
                 onPressed: () {
                   Navigator.of(context).pop();
-                  final book = Book(
-                    nameController.text,
-                    sinopseController.text,
-                    imageController.text,
-                  );
-                  books.add(book);
+                  // final book = Book(
+                  //   nameController.text,
+                  //   sinopseController.text,
+                  //   imageController.text,
+                  // );
+                  // books.add(book);
                 },
               );
             },
